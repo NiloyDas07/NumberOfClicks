@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #root{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10%;
+    }
+
+    #someText{
+      display: flex;
+      gap: 10px;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    #reset{
+      background-color: black;
+      color: white;
+      width: 100px;
+      height: 60px;
+      font-size: larger;
+      border: none;
+      border-radius: 20px;
+    }
+
+    #click{
+      font-size: larger;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <button id="click" onclick=clicked()>Click Me</button>
+
+    <div id="someText">
+      <h3>Number of times clicked: </h3>
+      <h3 id="counter"></h3>
+    </div>
+    <button id="reset" onclick=reset()>Reset</button>
+  </div>
+
+  <script>
+
+    function display(){
+      document.querySelector('#counter').textContent = count;
+
+      if (count % 2 === 0){
+        document.querySelector('#click').style.backgroundColor = 'darkred';
+      }
+      else{
+        document.querySelector('#click').style.backgroundColor = 'darkblue';
+      }
+    }
+
+    function clicked(){
+      count++;
+      localStorage.setItem('count', count);
+      display();
+    }
+
+    function reset(){
+      count = 0;
+      localStorage.clear();
+      display();
+    }
+
+    storageCount = localStorage.getItem('count');
+    let count = storageCount ? JSON.parse(storageCount) : 0;
+    console.log(count);
+
+    clickButton = document.querySelector('#click');
+    clickButton.style.color = 'white';
+    clickButton.style.width = '120px';
+    clickButton.style.height = '120px';
+    clickButton.style.borderRadius = '60px';
+    clickButton.style.border = 'none';
+    display();
+  </script>
+</body>
+</html>
