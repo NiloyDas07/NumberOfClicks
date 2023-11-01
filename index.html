@@ -69,8 +69,7 @@
       display();
     }
 
-    storageCount = localStorage.getItem('count');
-    let count = storageCount ? JSON.parse(storageCount) : 0;
+    let count =  localStorage.getItem('count') || 0;
     console.log(count);
 
     clickButton = document.querySelector('#click');
